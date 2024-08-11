@@ -2,7 +2,8 @@ name: CM Catalog Continuous Integration
 run-name: ${{ github.actor }} is running CI on CM Catalog 🚀
 on:
   pull_request:
-    branches: [*]
+    branches:
+      - '**'
 jobs:
   ci:
     runs-on: ubuntu-latest
