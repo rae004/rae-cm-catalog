@@ -1,16 +1,17 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
-  Generated,
   CreateDateColumn,
+  Entity,
+  Generated,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
-import { Field } from '@/field/entities/field.entity';
+import { ContentType } from '@/content-type/entities/content-type.entity';
 
 @Entity()
-export class ContentType {
+export class Field {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -33,6 +34,7 @@ export class ContentType {
   @Column()
   slug: string;
 
-  @OneToMany(() => Field, (field) => field.contentType)
-  fields?: Field[];
+  @ManyToOne(() => ContentType, (contentType) => contentType.fields)
+  @JoinColumn()
+  contentType?: ContentType;
 }
