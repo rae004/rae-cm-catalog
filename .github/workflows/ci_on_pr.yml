@@ -2,11 +2,18 @@ name: CM Catalog Continuous Integration
 run-name: ${{ github.actor }} is running CI on CM Catalog 🚀
 on:
   pull_request:
-    branches: [*]
+    branches:
+      - '**'
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Set Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - run: yarn install
       - run: yarn lint
       - run: yarn type-check
       - run: yarn build
