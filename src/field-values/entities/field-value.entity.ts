@@ -5,15 +5,13 @@ import {
   Generated,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ContentType } from '@/content-type/entities/content-type.entity';
-import { FieldValue } from '@/field-values/entities/field-value.entity';
+import { Field } from '@/field/entities/field.entity';
 
 @Entity()
-export class Field {
+export class FieldValue {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -36,10 +34,7 @@ export class Field {
   @Column()
   slug: string;
 
-  @ManyToOne(() => ContentType, (contentType) => contentType.fields)
+  @ManyToOne(() => Field, (field) => field.fieldValues)
   @JoinColumn()
-  contentType?: ContentType;
-
-  @OneToMany(() => FieldValue, (fieldValue) => fieldValue.field)
-  fieldValues?: FieldValue[];
+  field?: Field;
 }
