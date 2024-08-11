@@ -13,7 +13,7 @@ export class ContentTypeService {
   ) {}
 
   create(createContentTypeDto: CreateContentTypeDto) {
-    return `This action adds a new contentType dto ${createContentTypeDto}`;
+    return this.contentTypeRepository.save(createContentTypeDto);
   }
 
   findAll(): Promise<ContentType[]> {
