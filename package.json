@@ -18,7 +18,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:start": "docker compose up -d",
+    "docker:rebuild": "docker compose up -d --build -V",
+    "docker:down": "docker compose down",
+    "typeorm": "yarn build && npx typeorm -d dist/database/dataSource.js",
+    "typeorm:generate": "yarn typeorm migration:generate",
+    "typeorm:run": "yarn typeorm migration:run",
+    "typeorm:revert": "yarn typeorm migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

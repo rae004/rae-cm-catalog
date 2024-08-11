@@ -5,9 +5,7 @@ import {
   Generated,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
-import { Field } from '@/field/entities/field.entity';
 
 @Entity()
 export class ContentType {
@@ -33,6 +31,6 @@ export class ContentType {
   @Column()
   slug: string;
 
-  @OneToMany(() => Field, (field) => field.contentType)
-  fields?: Field[];
+  // @OneToMany(() => Field, (field) => field.contentType)
+  // fields?: Field[];
 }
