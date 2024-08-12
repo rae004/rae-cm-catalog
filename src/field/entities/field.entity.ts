@@ -38,7 +38,7 @@ export class Field {
 
   @ManyToOne(() => ContentType, (contentType) => contentType.fields)
   @JoinColumn()
-  contentType: ContentType;
+  contentType?: ContentType;
 
   @OneToMany(() => FieldValue, (fieldValue) => fieldValue.field)
   fieldValues?: FieldValue[];

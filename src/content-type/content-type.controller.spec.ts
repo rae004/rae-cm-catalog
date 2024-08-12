@@ -9,7 +9,14 @@ describe('ContentTypeController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ContentTypeController],
       providers: [ContentTypeService],
-    }).compile();
+    })
+      .useMocker(() => {
+        return {
+          findOne: jest.fn((entity) => entity),
+          save: jest.fn((entity) => entity),
+        };
+      })
+      .compile();
 
     controller = module.get<ContentTypeController>(ContentTypeController);
   });

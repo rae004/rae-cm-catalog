@@ -7,7 +7,14 @@ describe('FieldService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [FieldService],
-    }).compile();
+    })
+      .useMocker(() => {
+        return {
+          findOne: jest.fn((entity) => entity),
+          save: jest.fn((entity) => entity),
+        };
+      })
+      .compile();
 
     service = module.get<FieldService>(FieldService);
   });

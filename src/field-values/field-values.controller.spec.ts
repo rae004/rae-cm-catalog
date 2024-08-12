@@ -9,7 +9,14 @@ describe('FieldValuesController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [FieldValuesController],
       providers: [FieldValuesService],
-    }).compile();
+    })
+      .useMocker(() => {
+        return {
+          findOne: jest.fn((entity) => entity),
+          save: jest.fn((entity) => entity),
+        };
+      })
+      .compile();
 
     controller = module.get<FieldValuesController>(FieldValuesController);
   });
